@@ -118,6 +118,10 @@ qt_add_executable(runner
   ${BLOCKS}/src/browser_file_sink.cpp
   ${BLOCKS}/src/browser_audio.cpp
   ${BLOCKS}/src/rtlsdr_source.cpp
+  ${BLOCKS}/src/websocket_source.cpp
+  ${BLOCKS}/src/websocket_sink.cpp
+  ${BLOCKS}/src/tezuka_source.cpp
+  ${BLOCKS}/src/tezuka_sink.cpp
   ${BLOCKS}/src/plutosdr_common.cpp
   ${BLOCKS}/src/plutosdr_source.cpp
   ${BLOCKS}/src/plutosdr_sink.cpp
@@ -249,6 +253,15 @@ add_custom_command(TARGET runner POST_BUILD
           ${CMAKE_CURRENT_SOURCE_DIR}/src/rtlsdr_reader.js
           ${CMAKE_CURRENT_BINARY_DIR}/rtlsdr_reader.js
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/websocket_reader.js
+          ${CMAKE_CURRENT_BINARY_DIR}/websocket_reader.js
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/websocket_writer.js
+          ${CMAKE_CURRENT_BINARY_DIR}/websocket_writer.js
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
+          ${CMAKE_CURRENT_SOURCE_DIR}/src/paho-mqtt-min.js
+          ${CMAKE_CURRENT_BINARY_DIR}/paho-mqtt-min.js
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different
           ${CMAKE_CURRENT_SOURCE_DIR}/src/plutosdr_worker.js
           ${CMAKE_CURRENT_BINARY_DIR}/plutosdr_worker.js
   COMMAND ${CMAKE_COMMAND} -E copy_if_different
@@ -297,6 +310,9 @@ set_property(TARGET runner APPEND PROPERTY LINK_DEPENDS
   ${CMAKE_CURRENT_SOURCE_DIR}/src/browser_file_writer.js
   ${CMAKE_CURRENT_SOURCE_DIR}/src/audio_worklet.js
   ${CMAKE_CURRENT_SOURCE_DIR}/src/rtlsdr_reader.js
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/websocket_reader.js
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/websocket_writer.js
+  ${CMAKE_CURRENT_SOURCE_DIR}/src/paho-mqtt-min.js
   ${CMAKE_CURRENT_SOURCE_DIR}/src/plutosdr_worker.js
   ${CMAKE_CURRENT_SOURCE_DIR}/src/hackrf_worker.js
   ${CMAKE_CURRENT_SOURCE_DIR}/src/bb60_worker.js
